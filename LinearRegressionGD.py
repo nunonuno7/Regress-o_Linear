@@ -13,7 +13,7 @@ class LinearRegressionGD:
         The learning rate (between 0.0 and 1.0).
     max_iter : int, optional
         The number of maximum training iterations.
-    max_delta_iter: float, optional
+    min_delta_iter: float, optional
         The minimal change between delta iterations (between 0.0 and 1.0).
 
     """
@@ -65,13 +65,13 @@ class LinearRegressionGD:
         return self.m, self.b
 
     def predict(self,X):
-        """Predict the output for the given input X."""
+        """Predict the output for a given input X."""
         return print(f'Para um X de {X} o Output esperado é {round((X*self.m +self.b),2)}')
         
 
     def predict_input(self):
         
-        """This function predicts the output of a given X given by a prompt(input) of X.
+        """This function predicts the output of a given X provided by a prompt(input) of X.
 
         The input only accepts numbers, but there is a possibility to exit the loop with a word in the list:
 
