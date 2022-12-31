@@ -1,37 +1,17 @@
-## Importar bibliotecas
+#	LinearRegressionGD.py – Ficheiro Python 
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+    Este ficheiro contém um algoritmo que corre uma regressão linear simples utilizando o gradient descent.
 
-# Definir a variável dependente y (output) e a variável independente x (input) de um DATASET
+    O algoritmo permite ao utilizador para um determinado “learning_Rate”  defina:
+        1.	Número máximo de interações (max_iter),
+        2.	Mínima alteração entre erros (min_delta_iter);
 
-data =pd.read_csv("Salary_Data.csv")
-X = data.iloc[:, 0]
-Y = data.iloc[:, 1]
+    Adicionalmente:
+        1.	Permite saber a razão de paregem;
+        2.	Saber o Mean squared error (MSE) do Modelo;
+        3.	Saber a Variabilidade Explicada do Modelo - R Squared;
+        4.	Prever os valores de output para um conjunto de dados sem resultado.
 
-# Plot das observações
+# 	Salary_Data.csv – Ficheiro csv, com um DataSet de exemplo para aplicação do algoritmo;
 
-plt.scatter(X, Y)
-plt.show()
-
-# Importar a nossa classe e correr o modelo
-
-from LinearRegressionGD import LinearRegressionGD
-model = LinearRegressionGD(learning_Rate=0.0001,max_iter=1000,min_delta_iter=0.0002)
-model.fit(X,Y)
-# Razão da Paragem min_delta_iter ou max_iter?
-model.reason
-# plot com as observações e o y_pred
-
-plt.scatter(X, Y) 
-plt.plot([min(X), max(X)], [min(model.Y_pred), max(model.Y_pred)], color='red')  # regression line
-plt.show()
-#Outputs
-
-x_ = [4.5,8,9]
-preditct = [model.predict(_) for _ in x_]
-
-# Outputs com um dado promt.input
-
-model.predict_input()
+#	Exemple.ipynb - Ficheiro Jupyter Notebook onde corremos o algoritmo com suporte gráfico 

@@ -42,9 +42,15 @@ class LinearRegressionGD:
         global new_error
         global old_error
         global delta_iter
+        global SQT
+        Y_mean = np.mean(Y)
+        SQT = 0
         self.m = 0
         self.b = 0
         n = float(len(X))
+
+        for i in Y:
+            SQT +=(i-Y_mean)**2
 
         for i in range(self.max_iter+1):
             self.Y_pred = self.m*X + self.b  # The current predicted value of Y
@@ -55,6 +61,7 @@ class LinearRegressionGD:
             self.m = self.m  - self.learning_Rate * D_m  # Update m
             self.b = self.b  - self.learning_Rate * D_b  # Update b
             new_error = np.sum(((X*self.m+self.b)-Y)**2)
+            self.mse = new_error/n
             delta_iter = ((new_error-old_error)/old_error)
             if abs(delta_iter) < self.min_delta_iter:
                 self.reason = (f'Parou com um delta_iter de {round(delta_iter,5)} ')
@@ -63,6 +70,14 @@ class LinearRegressionGD:
                 self.reason = (f'Parou com o max_iter de {self.max_iter}')
 
         return self.m, self.b
+
+    def R2(self):
+
+        """Returns R squared"""
+
+        R2 = 1-(new_error/SQT)
+        print(f'{round((R2)*100,2)}% da variabilidade do DataSet é explicada através do modelo construido')
+
 
     def predict(self,X):
         """Predict the output for a given input X."""
